@@ -1,0 +1,3 @@
+INDEX VERSION 1.131+C:\Users\David\Documents\etude\uha\s2\algo graph\prjet\projet-graph-algo\.metadata\.plugins\org.eclipse.jdt.core
+4028360048.index
+3855903547.index

@@ -1,0 +1,29 @@
+
+public class GrapheOrienter extends Graphe{
+
+	public GrapheOrienter(int[] fs, int[] aps) {
+		super(fs, aps);
+		// TODO Auto-generated constructor stub
+	}
+
+	public GrapheOrienter(Graphe.Mat m) {
+		super(m);
+		// TODO Auto-generated constructor stub
+	}
+
+	public GrapheOrienter(String nomFichier) {
+		super(nomFichier);
+		// TODO Auto-generated constructor stub
+	}
+	public Mat Distance(Mat distance)
+	{
+		return null;
+		
+	}
+	public void Rang(int [] result, int [] prem,int []pred)
+	{
+		
+	}
+	
+
+}
