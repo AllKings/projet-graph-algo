@@ -62,7 +62,7 @@ public class CfcOrdonnancementDijkstra {
 
 
 	}
-	void codage_prufer(int **a, int*& t) const
+	void codage_prufer(int a, int t) const
 	{
     		int n=a[0][0];
     		t=new int[n-1];
@@ -84,7 +84,7 @@ public class CfcOrdonnancementDijkstra {
     		}
 	}
 
-	void decodage_prufer(int *t) const
+	void decodage_prufer(int t) const
 	{
     		int n=t[0]+2;
     		bool* I= new bool[n+1];
