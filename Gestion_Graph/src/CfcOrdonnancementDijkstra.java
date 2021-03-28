@@ -107,9 +107,7 @@ public class CfcOrdonnancementDijkstra {
             		}
         		}
     		}
-
-
     		for(int i=1; i<=n; i++) if(I[i]) cout<<i<<" ";
-		}
-	
 	}
+	
+}
