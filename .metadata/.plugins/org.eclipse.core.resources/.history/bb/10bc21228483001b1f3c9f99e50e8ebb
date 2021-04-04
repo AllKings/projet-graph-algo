@@ -1,6 +1,0 @@
-
-public class Graphe {
-private int []Fs;
-private int []Aps;
-
-}
