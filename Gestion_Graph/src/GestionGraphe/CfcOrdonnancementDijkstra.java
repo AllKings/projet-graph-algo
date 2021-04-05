@@ -62,7 +62,39 @@ public class CfcOrdonnancementDijkstra {
 
 
 	}
-	void codage_prufer(GrapheOrienter a, GrapheOrienter t) 
+	
+	public boolean dantzig(Mat matrice) {
+		int x;
+		int n = matrice.m[0][0];
+		
+		for(int k=2 ; k<n ;k++) {
+			for(int i=1;i<=k;k++) {
+				for(int j=1;j<=k;j++) {
+					if( (x=matrice.m[i][j] + matrice.m[j][k+1]) < matrice.m[i][k+1]) 
+						matrice.m[i][k+1]=x;
+
+					if( (x=matrice.m[k+1][j] + matrice.m[j][i]) < matrice.m[k+1][i])
+						matrice.m[k+1][i]=x;
+
+				}
+				if(matrice.m[i][k+1] + matrice.m[k+1][i]<0)
+				{
+					System.out.println("Circuit absornbant" + i + " et " + k+1);
+					return false;
+				}
+			}
+			for(int i=1;i<=k;i++) {
+				for(int j=1;j<=k;j++) {
+					if( (x=matrice.m[i][k+1] + matrice.m[k+1][j]) < matrice.m[i][j])
+						matrice.m[i][j] = x;
+				}
+			}
+
+		}
+		return true;
+	}
+	
+	/*void codage_prufer(GrapheOrienter a, GrapheOrienter t) 
     		int n=a.getAps()[0];
     		t=new int[n-1];
     		t[0]=n-2;
@@ -116,6 +148,6 @@ public class CfcOrdonnancementDijkstra {
 				System.out.println(i+" ");
 			}
 		}
-	}
+	}*/
 	
 }
