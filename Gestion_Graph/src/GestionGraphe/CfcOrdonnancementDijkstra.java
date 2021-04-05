@@ -63,7 +63,7 @@ public class CfcOrdonnancementDijkstra {
 
 	}
 	void codage_prufer(GrapheOrienter a, GrapheOrienter t) 
-    		int n=a[0][0];
+    		int n=a.getAps()[0];
     		t=new int[n-1];
     		t[0]=n-2;
     		for(int i=1; i<=n; i++)
@@ -90,7 +90,7 @@ public class CfcOrdonnancementDijkstra {
 
 	void decodage_prufer(GrapheOrienter t) 
 	{
-    		int n=t[0]+2;
+    		int n=t.getAps()[0]+2;
     		bool I= new bool[n+1];
     		for(int i=1; i<=n; i++) I[i]=true;
 
