@@ -62,14 +62,18 @@ public class CfcOrdonnancementDijkstra {
 
 
 	}
-	void codage_prufer(int a, int t) const
-	{
+	void codage_prufer(GrapheOrienter a, GrapheOrienter t) 
     		int n=a[0][0];
     		t=new int[n-1];
     		t[0]=n-2;
     		for(int i=1; i<=n; i++)
     		{
-        		for(int j=1; j<=n; j++) if(a[i][j]==1) a[i][0]++;
+        		for(int j=1; j<=n; j++) {
+				if(a[i][j]==1) 
+				{
+					a[i][0]++;
+				}
+			}
     		}
 
     		for(int i=1; i<=n-2; i++)
@@ -84,13 +88,13 @@ public class CfcOrdonnancementDijkstra {
     		}
 	}
 
-	void decodage_prufer(int t) const
+	void decodage_prufer(GrapheOrienter t) 
 	{
     		int n=t[0]+2;
-    		bool* I= new bool[n+1];
+    		bool I= new bool[n+1];
     		for(int i=1; i<=n; i++) I[i]=true;
 
-    		int* compteT= new int[n+1]; //cpt combien de fois le sommet est dans t
+    		int compteT= new int[n+1]; //cpt combien de fois le sommet est dans t
     		for(int i=1; i<=n; i++) compteT=0;
     		for(int i=1; i<=n-2; i++) compteT[t[i]]++;
 
@@ -98,16 +102,20 @@ public class CfcOrdonnancementDijkstra {
     		{
         		for(int j=1; j<=n; j++)
         		{
-            		if(I[j] && compteT[j]==0)
-            		{
-                		I[j]=false;
-                		compteT[t[i]]--;
-                		cout<<t[i];
-                		break;
-            		}
+            			if(I[j] && compteT[j]==0)
+            			{
+                			I[j]=false;
+                			compteT[t[i]]--;
+                			System.out.println(t[i]);
+                		
+            			}
         		}
     		}
-    		for(int i=1; i<=n; i++) if(I[i]) cout<<i<<" ";
+    		for(int i=1; i<=n; i++) {
+			if(I[i]) {
+				System.out.println(i+" ");
+			}
+		}
 	}
 	
 }
