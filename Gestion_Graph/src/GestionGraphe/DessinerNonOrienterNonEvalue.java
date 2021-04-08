@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class DessinerNonOrienter extends JFrame {
+public class DessinerNonOrienterNonEvalue extends JFrame {
 
 	private JPanel contentPane;
 
@@ -18,7 +18,7 @@ public class DessinerNonOrienter extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DessinerNonOrienter frame = new DessinerNonOrienter();
+					DessinerNonOrienterNonEvalue frame = new DessinerNonOrienterNonEvalue();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -30,7 +30,7 @@ public class DessinerNonOrienter extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DessinerNonOrienter() {
+	public DessinerNonOrienterNonEvalue() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -38,4 +38,5 @@ public class DessinerNonOrienter extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 	}
+
 }

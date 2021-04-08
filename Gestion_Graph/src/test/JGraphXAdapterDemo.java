@@ -2,6 +2,8 @@ package test;
 
 import com.mxgraph.layout.*;
 import com.mxgraph.swing.*;
+import com.mxgraph.view.mxGraph;
+
 import org.jgrapht.*;
 import org.jgrapht.ext.*;
 import org.jgrapht.graph.*;
@@ -46,51 +48,45 @@ public class JGraphXAdapterDemo
     @Override
     public void init()
     {
-        // create a JGraphT graph
-        ListenableGraph<String, DefaultEdge> g =
-            new DefaultListenableGraph<>(new DefaultDirectedGraph<>(DefaultEdge.class));
+    	
 
-        // create a visualization using JGraph, via an adapter
-        jgxAdapter = new JGraphXAdapter<>(g);
+    
+        //--------------------------------------------
+        mxGraph graph = new mxGraph();
+		Object parent = graph.getDefaultParent();
 
-        setPreferredSize(DEFAULT_SIZE);
-        mxGraphComponent component = new mxGraphComponent(jgxAdapter);
-        component.setConnectable(false);
-        component.getGraph().setAllowDanglingEdges(false);
-        getContentPane().add(component);
-        resize(DEFAULT_SIZE);
+		graph.getModel().beginUpdate();
+		try
+		{
+			Object v1 = graph.insertVertex(parent, null, "v1", 20, 20, 30,30);
+			Object v2 = graph.insertVertex(parent, null, "v2", 20, 20, 30,30);
+			Object v3 = graph.insertVertex(parent, null, "v3", 20, 20, 30,30);
+			Object v4 = graph.insertVertex(parent, null, "v4", 20, 20, 30,30);
+			Object v5 = graph.insertVertex(parent, null, "v5", 20, 20, 30,30);
+			Object v6 = graph.insertVertex(parent, null, "v6", 20, 20, 30,30);
+			Object v7 = graph.insertVertex(parent, null, "v7", 20, 20, 30,30);
+			Object v8 = graph.insertVertex(parent, null, "v8", 20, 20, 30,30);
+			graph.insertEdge(parent, null, "Edge", v3, v4);
+			graph.insertEdge(parent, null, "Edge",v1, v2);
+			graph.insertEdge(parent, null, "Edge",v2, v3);
+			graph.insertEdge(parent, null, "Edge",v3, v1);
+			graph.insertEdge(parent, null, "Edge",v4, v3);
+	        
+			graph.insertEdge(parent, null, "Edge",v2, v1);
+	        graph.insertEdge(parent, null, "Edge",v5, v6);
+	        graph.insertEdge(parent, null, "Edge",v6, v7);
+	        graph.insertEdge(parent, null, "Edge",v7, v5);
+	        graph.insertEdge(parent, null, "Edge",v8, v7);
+			
+		}
+		finally
+		{
+			graph.getModel().endUpdate();
+		}
 
-        String v1 = "v1";
-        String v2 = "v2";
-        String v3 = "v3";
-        String v4 = "v4";
-        String v5 = "v5";
-        String v6 = "v6";
-        String v7 = "v7";
-        String v8 = "v8";
-
-        // add some sample data (graph manipulated via JGraphX)
-        g.addVertex(v1);
-        g.addVertex(v2);
-        g.addVertex(v3);
-        g.addVertex(v4);
-        g.addVertex(v5);
-        g.addVertex(v6);
-        g.addVertex(v7);
-        g.addVertex(v8);
-        
-        g.addEdge(v1, v2);
-        g.addEdge(v2, v3);
-        g.addEdge(v3, v1);
-        g.addEdge(v4, v3);
-        
-        g.addEdge(v2, v1);
-        g.addEdge(v5, v6);
-        g.addEdge(v6, v7);
-        g.addEdge(v7, v5);
-        g.addEdge(v8, v7);
-        // positioning via jgraphx layouts
-        mxCircleLayout layout = new mxCircleLayout(jgxAdapter);
+		mxGraphComponent graphComponent = new mxGraphComponent(graph);
+		getContentPane().add(graphComponent);
+		mxCircleLayout layout = new mxCircleLayout(graph);
 
         // center the circle
         int radius = 100;
@@ -98,8 +94,7 @@ public class JGraphXAdapterDemo
         layout.setY0((DEFAULT_SIZE.height / 2.0) - radius);
         layout.setRadius(radius);
         layout.setMoveCircle(true);
-
-        layout.execute(jgxAdapter.getDefaultParent());
-        // that's all there is to it!...
+        layout.execute(graph.getDefaultParent());
+        new mxParallelEdgeLayout(graph).execute(graph.getDefaultParent());
     }
 }

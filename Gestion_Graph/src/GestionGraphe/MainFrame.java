@@ -56,9 +56,8 @@ public class MainFrame {
 		JButton btnNewButton = new JButton("Graphe Orienter");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GrapheOrienterGestion frame1 = new GrapheOrienterGestion();
+				Dialogue_Dessinner_Graphe_Orienter_Evalue frame1 = new Dialogue_Dessinner_Graphe_Orienter_Evalue();
 				frame1.setVisible(true);
-				frame.setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(128, 135, 445, 21);
@@ -67,7 +66,7 @@ public class MainFrame {
 		JButton btnGrapheNonOrienter = new JButton("Graphe non Orienter");
 		btnGrapheNonOrienter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GrapheNonOrienterGestion frame1 = new GrapheNonOrienterGestion();
+				Dialogue_Graphe_Nom_Orienter_Evalue frame1 = new Dialogue_Graphe_Nom_Orienter_Evalue();
 				frame1.setVisible(true);
 				frame.setVisible(false);
 			}

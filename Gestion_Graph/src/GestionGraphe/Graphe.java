@@ -104,10 +104,11 @@ public Graphe(Mat m) {
         Aps[indexAps]=indexFs;
         for(int j=1;j<=NombreSommet;j++)
         {
-            if(m.m[i][j]==1)
+            if(m.m[i][j]!=0)
             {
                 Fs[indexFs]=j;
                 indexFs++;
+                
             }
         }
         Fs[indexFs]=0;

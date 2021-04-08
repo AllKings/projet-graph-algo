@@ -22,8 +22,9 @@ import org.jgrapht.nio.dot.DOTExporter;
 import org.jgrapht.traverse.DepthFirstIterator;
 
 import com.mxgraph.layout.mxCircleLayout;
+import com.mxgraph.layout.mxParallelEdgeLayout;
 import com.mxgraph.swing.mxGraphComponent;
-
+import com.mxgraph.view.mxGraph;
 
 import test.JGraphXAdapterDemo;
 
@@ -41,12 +42,13 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.awt.event.ActionEvent;
 
-public class DessinnerOrieterSommet extends JFrame {
+public class Dessinner_Graphe_Orienter_Evalue extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -58,7 +60,7 @@ public class DessinnerOrieterSommet extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DessinnerOrieterSommet frame = new DessinnerOrieterSommet(5);
+					Dessinner_Graphe_Orienter_Evalue frame = new Dessinner_Graphe_Orienter_Evalue(5);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -108,7 +110,7 @@ public class DessinnerOrieterSommet extends JFrame {
 		}
 		return g;
 	}
-	public DessinnerOrieterSommet(int NombreSommet,int[][]m) {
+	public Dessinner_Graphe_Orienter_Evalue(int NombreSommet,int[][]m) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 628, 389);
 		contentPane = new JPanel();
@@ -121,7 +123,7 @@ public class DessinnerOrieterSommet extends JFrame {
 		contentPane.add(table);
 		JTable g=Data(NombreSommet,m);
 		table.setModel(g.getModel());
-		JButton btnNewButton = new JButton("valider");
+		JButton btnNewButton = new JButton("afficher");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JGraphXAdapterDemo applet = new JGraphXAdapterDemo();
@@ -230,7 +232,7 @@ public class DessinnerOrieterSommet extends JFrame {
 				}
 				m.m[0][0]=NombreSommet;
 				m.m[0][1]=nb;
-				GrapheOrienter graphe=new GrapheOrienter(m);
+				Grphe_Orienter_Non_Evalue graphe=new Grphe_Orienter_Non_Evalue(m);
 				int[]rang=new int[NombreSommet+1];
 				rang[0]=NombreSommet;
 				int[]prem=new int[NombreSommet+1];
@@ -275,7 +277,7 @@ public class DessinnerOrieterSommet extends JFrame {
 				}
 				m.m[0][0]=NombreSommet;
 				m.m[0][1]=nb;
-				GrapheOrienter graphe=new GrapheOrienter(m);
+				Grphe_Orienter_Non_Evalue graphe=new Grphe_Orienter_Non_Evalue(m);
 				Mat matDist=graphe.Distance();
 				AfficheurDistance frame = new AfficheurDistance(matDist);
 				frame.setVisible(true);
@@ -296,12 +298,21 @@ public class DessinnerOrieterSommet extends JFrame {
 		JButton btnKruskal = new JButton("Kruskal");
 		btnKruskal.setBounds(114, 142, 85, 21);
 		contentPane.add(btnKruskal);
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		btnRetour.setBounds(10, 321, 85, 21);
+		contentPane.add(btnRetour);
 	}
 	
+
 	/**
 	 * @wbp.parser.constructor
 	 */
-	public DessinnerOrieterSommet(int NombreSommet) {
+	public Dessinner_Graphe_Orienter_Evalue(int NombreSommet) {
 	
 
 		
@@ -318,7 +329,7 @@ public class DessinnerOrieterSommet extends JFrame {
 		contentPane.add(table);
 		JTable g=Data(NombreSommet);
 		table.setModel(g.getModel());
-		JButton btnNewButton = new JButton("valider");
+		JButton btnNewButton = new JButton("afficher");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JGraphXAdapterDemo applet = new JGraphXAdapterDemo();
@@ -424,7 +435,7 @@ public class DessinnerOrieterSommet extends JFrame {
 				}
 				m.m[0][0]=NombreSommet;
 				m.m[0][1]=nb;
-				GrapheOrienter graphe=new GrapheOrienter(m);
+				Grphe_Orienter_Non_Evalue graphe=new Grphe_Orienter_Non_Evalue(m);
 				int[]rang=new int[NombreSommet+1];
 				rang[0]=NombreSommet;
 				int[]prem=new int[NombreSommet+1];
@@ -463,9 +474,10 @@ public class DessinnerOrieterSommet extends JFrame {
 				}
 				m.m[0][0]=NombreSommet;
 				m.m[0][1]=nb;
-				GrapheOrienter graphe=new GrapheOrienter(m);
+				Grphe_Orienter_Non_Evalue graphe=new Grphe_Orienter_Non_Evalue(m);
 				int []aps=graphe.getAps();
 				int []fs=graphe.getFs();
+				//int []d=graphe.getD();
 				AfficheurFsAps frame = new AfficheurFsAps(fs,aps);
 				frame.setVisible(true);
 			}
@@ -496,7 +508,7 @@ public class DessinnerOrieterSommet extends JFrame {
 				}
 				m.m[0][0]=NombreSommet;
 				m.m[0][1]=nb;
-				GrapheOrienter graphe=new GrapheOrienter(m);
+				Grphe_Orienter_Non_Evalue graphe=new Grphe_Orienter_Non_Evalue(m);
 				Mat matDist=graphe.Distance();
 				AfficheurDistance frame = new AfficheurDistance(matDist);
 				frame.setVisible(true);
@@ -511,13 +523,64 @@ public class DessinnerOrieterSommet extends JFrame {
 		btnDjikstra.setBounds(114, 100, 85, 21);
 		contentPane.add(btnDjikstra);
 		
-		JButton btnDantzig = new JButton("Dantzig");
+		JButton btnDantzig = new JButton("Tarjan");
+		btnDantzig.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int nb=0;
+				Mat m=new Mat(NombreSommet,NombreSommet);
+				for(int i=1;i<=NombreSommet;i++)
+				{
+					for(int j=1;j<=NombreSommet;j++)
+					{
+						m.m[i][j]= Integer.valueOf(g.getValueAt(i, j).toString());
+						if(m.m[i][j]>0)
+						{
+							nb+=1;
+						}
+					}
+				}
+				for(int i=0;i<=NombreSommet;i++)
+				{
+					m.m[0][i]=0;
+					m.m[i][0]=0;
+				}
+				m.m[0][0]=NombreSommet;
+				m.m[0][1]=nb;
+				Grphe_Orienter_Non_Evalue graphe=new Grphe_Orienter_Non_Evalue(m);
+				Mat matreduite=graphe.FortementConexGlobal();
+				JGraphXAdapterDemo applet = new JGraphXAdapterDemo();
+				JTable k=Data(matreduite.m[0][0],matreduite.m);
+		        applet.init();
+		        JFrame frame1 = new JFrame();
+		        JButton btnNewButton23 = new JButton("retour");
+		        btnNewButton23.setBounds(10, 27, 85, 21);
+		        btnNewButton23.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						frame1.setVisible(false);
+				        setVisible(true);
+					}
+				});
+		        frame1.getContentPane().add(btnNewButton23);
+		        frame1.getContentPane().add(applet);
+		        frame1.setTitle("JGraphT Adapter to JGraphX Demo");
+		        frame1.pack();
+		        frame1.setVisible(true);
+			}
+		});
 		btnDantzig.setBounds(10, 142, 85, 21);
 		contentPane.add(btnDantzig);
 		
-		JButton btnKruskal = new JButton("Kruskal");
-		btnKruskal.setBounds(114, 142, 85, 21);
-		contentPane.add(btnKruskal);
+		JButton btnRetour = new JButton("Retour");
+		btnRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		btnRetour.setBounds(10, 321, 85, 21);
+		contentPane.add(btnRetour);
 	}
 	
 	public class JGraphXAdapterDemo
@@ -528,7 +591,6 @@ public class DessinnerOrieterSommet extends JFrame {
 
     private final Dimension DEFAULT_SIZE = new Dimension(530, 320);
 
-    private JGraphXAdapter<String, DefaultEdge> jgxAdapter;
 
     /**
      * An alternative starting point for this demo, to also allow running this applet as an
@@ -540,51 +602,36 @@ public class DessinnerOrieterSommet extends JFrame {
 
     public void init(JTable m)
     {
-        // create a JGraphT graph
-        ListenableGraph<String, DefaultEdge> g =
-            new DefaultListenableGraph<>(new DefaultDirectedGraph<>(DefaultEdge.class));
-
-        // create a visualization using JGraph, via an adapter
-        jgxAdapter = new JGraphXAdapter<>(g);
-
-        setPreferredSize(DEFAULT_SIZE);
-        mxGraphComponent component = new mxGraphComponent(jgxAdapter);
-        component.setConnectable(false);
-        component.getGraph().setAllowDanglingEdges(false);
-        getContentPane().add(component);
-        resize(DEFAULT_SIZE);
-
-        
+        mxGraph graph = new mxGraph();
+		Object parent = graph.getDefaultParent();
         int n=Integer.valueOf(m.getValueAt(0, 0).toString());
-        // add some sample data (graph manipulated via JGraphX)
+        ArrayList<Object>h = new ArrayList<Object>();
         for(int i=1;i<=n;i++ )
         {
-        	g.addVertex(m.getValueAt(0, i).toString());
+        	h.add(graph.insertVertex(parent, null, m.getValueAt(0, i).toString(), 20, 20, 30,30));
         }
         for(int i=1;i<=n;i++ )
         {
         	for(int j=1;j<=n;j++ )
             {
             
-        		if(m.getValueAt(i, j).toString().equals("1"))
+        		if(!m.getValueAt(i, j).toString().equals("0"))
         		{
-        			g.addEdge(m.getValueAt(0, i).toString(),m.getValueAt(0, j).toString());
-        			
+        			graph.insertEdge(parent, null, m.getValueAt(i, j).toString(), h.get(Integer.valueOf(m.getValueAt(0, i).toString())-1), h.get(Integer.valueOf(m.getValueAt(0, j).toString())-1));
         		}
             }
         }
-        // positioning via jgraphx layouts
-        mxCircleLayout layout = new mxCircleLayout(jgxAdapter);
-
-        // center the circle
-        int radius = 100;
+        
+        mxGraphComponent graphComponent = new mxGraphComponent(graph);
+		getContentPane().add(graphComponent);
+		mxCircleLayout layout = new mxCircleLayout(graph);
+        int radius = 150;
         layout.setX0((DEFAULT_SIZE.width / 2.0) - radius);
         layout.setY0((DEFAULT_SIZE.height / 2.0) - radius);
         layout.setRadius(radius);
         layout.setMoveCircle(true);
-        
-        layout.execute(jgxAdapter.getDefaultParent());
-        // that's all there is to it!...
+        layout.execute(graph.getDefaultParent());
+        new mxParallelEdgeLayout(graph).execute(graph.getDefaultParent());
     }
 }
 

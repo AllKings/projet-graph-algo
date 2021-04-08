@@ -44,7 +44,7 @@ public class AfficheurDistance extends JFrame {
 	 * Create the frame.
 	 */
 	public AfficheurDistance(Mat m) {
-		JTable g=DessinnerOrieterSommet.Data(Integer.valueOf(m.m[0][0]),m.m);
+		JTable g=Dessinner_Graphe_Orienter_Evalue.Data(Integer.valueOf(m.m[0][0]),m.m);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 714, 396);
 		contentPane = new JPanel();

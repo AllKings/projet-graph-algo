@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
-public class DessinerOrienter extends JFrame {
+public class Dialogue_Dessinner_Graphe_Orienter_Evalue extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -28,7 +28,7 @@ public class DessinerOrienter extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DessinerOrienter frame = new DessinerOrienter();
+					Dialogue_Dessinner_Graphe_Orienter_Evalue frame = new Dialogue_Dessinner_Graphe_Orienter_Evalue();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class DessinerOrienter extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DessinerOrienter() {
+	public Dialogue_Dessinner_Graphe_Orienter_Evalue() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 584, 414);
 		contentPane = new JPanel();
@@ -56,10 +56,10 @@ public class DessinerOrienter extends JFrame {
 				if(reponse==JFileChooser.APPROVE_OPTION)
 				{
 					String nomFicher=file.getSelectedFile().getAbsolutePath();
-					GrapheOrienter g1=new GrapheOrienter(nomFicher);
+					Grphe_Orienter_Non_Evalue g1=new Grphe_Orienter_Non_Evalue(nomFicher);
 					Mat m= g1.Tomatrice();
 					int NombreSommet=m.m[0][0];
-					DessinnerOrieterSommet f=new DessinnerOrieterSommet(NombreSommet,m.m);
+					Dessinner_Graphe_Orienter_Evalue f=new Dessinner_Graphe_Orienter_Evalue(NombreSommet,m.m);
 					f.setVisible(true);
 					setVisible(false);
 				}
@@ -78,9 +78,9 @@ public class DessinerOrienter extends JFrame {
 					String nomFicher=file.getSelectedFile().getAbsolutePath();
 					Mat m=Graphe.MatriceFromFichier(nomFicher);
 					int NombreSommet=m.m[0][0];
-					DessinnerOrieterSommet f=new DessinnerOrieterSommet(NombreSommet,m.m);
+					Dessinner_Graphe_Orienter_Evalue f=new Dessinner_Graphe_Orienter_Evalue(NombreSommet,m.m);
 					f.setVisible(true);
-					setVisible(false);
+					
 				}
 			}
 		});
@@ -91,7 +91,7 @@ public class DessinerOrienter extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int g=Integer.valueOf(textField.getText());
-				DessinnerOrieterSommet frame = new DessinnerOrieterSommet(g);
+				Dessinner_Graphe_Orienter_Evalue frame = new Dessinner_Graphe_Orienter_Evalue(g);
 				frame.setVisible(true);
 				setVisible(false);
 			}
@@ -107,5 +107,14 @@ public class DessinerOrienter extends JFrame {
 		JLabel lblNewLabel = new JLabel("Nombre Sommet");
 		lblNewLabel.setBounds(60, 251, 95, 13);
 		contentPane.add(lblNewLabel);
+		
+		JButton btnNewButton_3 = new JButton("Retour");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		btnNewButton_3.setBounds(55, 309, 85, 21);
+		contentPane.add(btnNewButton_3);
 	}
 }

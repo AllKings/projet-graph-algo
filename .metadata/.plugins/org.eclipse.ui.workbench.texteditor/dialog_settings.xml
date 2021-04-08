@@ -7,6 +7,7 @@
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="DessinerOrienter"/>
 			<item value="public Graphe(int[] fs, int[] aps) {"/>
 		</list>
 		<list key="replacehistory">
