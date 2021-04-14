@@ -1128,4 +1128,35 @@ public class Graphe_orienter_value {
 	return null;
 	}
 	
+	public boolean dantzig(int [][] matrice) {
+		int x;
+		int n = matrice[0][0];
+		
+		for(int k=2 ; k<n ;k++) {
+			for(int i=1;i<=k;k++) {
+				for(int j=1;j<=k;j++) {
+					if( (x=matrice[i][j] + matrice[j][k+1]) < matrice[i][k+1]) 
+						matrice[i][k+1]=x;
+
+					if( (x=matrice[k+1][j] + matrice[j][i]) < matrice[k+1][i])
+						matrice[k+1][i]=x;
+
+				}
+				if(matrice[i][k+1] + matrice[k+1][i]<0)
+				{
+					System.out.println("Circuit absornbant" + i + " et " + k+1);
+					return false;
+				}
+			}
+			for(int i=1;i<=k;i++) {
+				for(int j=1;j<=k;j++) {
+					if( (x=matrice[i][k+1] + matrice[k+1][j]) < matrice[i][j])
+						matrice[i][j] = x;
+				}
+			}
+
+		}
+		return true;
+	}
+	
 }
